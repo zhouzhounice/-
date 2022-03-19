@@ -8,12 +8,12 @@
 
 Function.prototype.myCall = function (content ,...args){
   //判断content是否为null或undefined
-  content = content == undefined?window:Object(content) 
+  content = content == undefined?window:Object(content);
   let fn = Symbol()
-  content[fn] = this
-  const resulet = content[fn](...args)
+  content[fn] = this;
+  const res = content[fn](...args);
   delete content[fn]
-  return resulet
+  return res
 }
 
 function test(a,b){
