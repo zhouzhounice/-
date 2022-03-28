@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>test</title>
+</head>
+<body>
+  <ul id="box">
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+  <script>
+    function eventEntrudt(ele,type,fn,selector){
+      ele.addEventListener(type,event =>{
+        const target = event.target
+        if(selector){
+          if(target.matches(selector)){
+            fn.call(target,event)
+          }
+        }else{
+          fn.call(ele,event)
+        }
+      })
+    }
+    const ul = document.getElementById('box')
+    eventEntrudt(ul,'click',(event)=>{console.log(1)},'li')
+    eventEntrudt(ul,'click',(event)=>{console.log(2)})
+  </script>
+</body>
+</html>
