@@ -1,43 +1,30 @@
-function ajax(url){
+function myAjax(url){
+  // 返回出一个Promise对象
   return new Promise((resolve,reject)=>{
     // 1.创建一个XHR对象
-    const xhr = new XMLHttpRequest()
-
-    // 此时xhr创建了，但是还未调用open方法，则readyState为0
-
-    // 2.初始化一个异步请求(还没发送请求)
-    xhr.open('GET',url,true)
-    // 这里的true代表支持异步发送请求，false就是同步发送
-
-    // open方法被调用 xhr.readyState为1
-
-    // 4.监视请求是否响应成功
-    xhr.onreadystatechange = function () {
+    const XHR = new XMLHttpRequest()
+    // 2.初始化一个异步请求(此时请求还没发送)
+    XHR.open('GET',url,true) // 如果第三个参数为false，则请求为同步请求
+    // 4.监视请求是否成功
+    XHR.onreadystatechange=function(){
       /* 
-        ajax引擎得到响应数据后
-          将xhr的readyState属性指定为4
-          将响应数据保存在response / responseText 属性上
-          调用此回调函数
+      Ajax引擎得到响应数据后
+        会将状态定为4
+        拿到的响应数据保存在response/respenseText属性上
+        调用此回调函数
       */
-
-          // 如果readyState为3时，说明正在下载数据中 如果为4 则说明下载完成了
-     if(xhr.readyState !== 4){
-       // 如果状态值不为4，直接结束（请求还没有结束）
-       return
-     }
-
-     // 如果响应码在200~299之间，说明请求都是成功的
-     if(xhr.status>=200 && xhr.status<300){
-       // 指定promise成功及结果值
-       resolve(JSON.parse(xhr.responseText))
-     } else {
-       // 请求失败 指定promise失败及其结果值
-       reject(new Error('request error status' + request.status))
-     }
-
+      // 如果状态不为4，则直接结束
+      if(XHR.readyState !== 4)return
     }
-    // 3.发送请求，并携带请求体参数
-    xhr.send(null) 
-    // send方法被调用后xhr.readyState为2
+    // 如果响应码为200~299之间，说明请求都是成功的
+    if(XHR.status>=200&&XHR.status<=299){
+      // 指定promise成功及其结果值
+      resolve(JSON.parse(XHR.responseText))
+    }else{
+      // 指定promise失败及其结果值
+      reject(new Error('request error staus'+request.status))
+    }
+    // 3.发送请求，并且携带请求体参数
+    XHR.send(null)
   })
 }
