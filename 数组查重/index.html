@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>test</title>
+</head>
+<body>
+  <script>
+    const arrTest = [1,1,3,4,5,5,5,2,3,4,6,8,4,5]
+    // 方法1：ES6去重
+    /* function fn1(arr){
+      return Array.from(new Set(arr))
+    }
+    console.log(fn1(arrTest)) */
+    // 方法2：for...for嵌套去重
+   /*  function fn2(arr){
+      for(let i = 0;i<=arr.length;i++){
+        for(let j=i+1;j<=arr.length;j++){
+          if(arr[i]===arr[j]){
+            arr.splice(j,1)
+            j--;
+          }
+        }
+      }
+      return arr
+    }
+    console.log(fn2(arrTest)) */
+    // 方法3：indexOf去重
+    /* function fn3(arr){
+      if(!Array.isArray(arr)){
+        return new Error('类型错误')
+      }
+      let newArr= [];
+      arr.forEach((item,index)=>{
+        if(newArr.indexOf(item) === -1){
+          newArr.push(item)
+        }
+      })
+      return newArr;
+    }
+    console.log(fn3(arrTest)) */
+  </script>
+</body>
+</html>
