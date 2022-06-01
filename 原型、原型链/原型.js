@@ -15,3 +15,8 @@ const f2 = new Foo()
 
 const o1 = new Object()
 const o2 =  {}
+
+function fn(){
+  console.log(this)
+}
+fn()
