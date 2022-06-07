@@ -72,7 +72,33 @@ this是一个函数内部的指针，指向的是调用这个函数的对象。
 
 # 谈谈原型、原型链
 
+- 每个函数都有一个显示原型属性prototype
+
+- 每个实例对象都有一个隐式原型属性`__proto__`
+
+- 实例的`__proto__`与对应函数的prototype都指向原型属性
+
+- 原型对象上有一个constructor属性指向对应的构造函数
+
+- 当我们查找一个属性的时候，是现在自身进行查找，找不到就会向原型对象上查找，如果没有，还会向着原型对象的原型对象上查找，直到返回undefined，查找属性的这个轨迹就被称为原型链
+- 由于js中由c语言写的内容有三个Objec、Function、Function.prototype，所以原型链中有四条线是作者自己制定的
+  - `Function.__proto__ === Function.prototype`
+  - `Object.__proto__ === Function.prototype 由于Function和Object都是函数，需要用到这个类型所具有的公告方法，所以必须有这条线`
+  - `Function.prototype.__proto__ === Object.prototype 由于js中函数也是对象，所以有权利使用对象身上的方法`
+  - `Object.prototype.__proto__ === null 由于js的继承是由原型链实现的，如果Object原型对象的隐式原型属性指向自身，那么原型链会陷入死循环 `
+
 # 谈谈面向对象
+
+- 面向对象是一种编程模式
+- 它有三个特点
+  - 封装：让代码变得低耦合高内聚
+  - 继承：让子类实例继承父类身上的私有和公有的属性和方法
+    - 原型继承
+    - call继承
+    - 寄生组合继承
+    - ES6继承
+  - 多态
+- 
 
 # 数组去重
 
